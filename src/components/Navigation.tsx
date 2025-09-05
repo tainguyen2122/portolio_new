@@ -131,22 +131,23 @@ const Navigation: React.FC<NavigationProps> = ({
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden animate-fadeIn"
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden animate-fadeIn"
           onClick={() => setIsMenuOpen(false)}
         />
       )}
 
       {/* Mobile Navigation Menu */}
-      <div className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-l border-gray-200/50 dark:border-gray-700/50 shadow-2xl z-50 transform transition-transform duration-300 ease-out lg:hidden ${
+      <div className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white/10 dark:bg-gray-900/10 backdrop-blur-2xl border-l border-white/20 dark:border-gray-700/30 shadow-2xl z-50 transform transition-transform duration-300 ease-out lg:hidden ${
         isMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         <div className="p-6 pt-20">
           {/* Mobile Theme and Language toggles */}
           <div className="flex flex-col space-y-4 mb-8 pb-6 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex flex-col space-y-4 mb-8 pb-6 border-b border-white/20 dark:border-gray-700/30">
             <div className="flex items-center justify-center space-x-4">
               <button
                 onClick={toggleTheme}
-                className="flex items-center space-x-3 px-6 py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-lg btn-enhanced group"
+                className="flex items-center space-x-3 px-6 py-3 rounded-xl bg-white/20 dark:bg-gray-800/30 backdrop-blur-sm text-gray-800 dark:text-white shadow-lg btn-enhanced group hover:bg-gradient-to-r hover:from-yellow-400 hover:to-orange-500 hover:text-white border border-white/30"
               >
                 {theme !== 'light' ? (
                   <Sun size={20} className="group-hover:animate-spin" />
@@ -160,7 +161,7 @@ const Navigation: React.FC<NavigationProps> = ({
               
               <button
                 onClick={toggleLanguage}
-                className="flex items-center space-x-3 px-6 py-3 rounded-xl bg-gradient-to-r from-green-500 to-blue-500 text-white shadow-lg btn-enhanced group"
+                className="flex items-center space-x-3 px-6 py-3 rounded-xl bg-white/20 dark:bg-gray-800/30 backdrop-blur-sm text-gray-800 dark:text-white shadow-lg btn-enhanced group hover:bg-gradient-to-r hover:from-green-500 hover:to-blue-500 hover:text-white border border-white/30"
               >
                 <Languages size={20} className="group-hover:rotate-12" />
                 <span className="text-sm font-medium">
@@ -178,15 +179,15 @@ const Navigation: React.FC<NavigationProps> = ({
                 onClick={() => scrollToSection(id)}
                 className={`flex items-center space-x-4 w-full px-6 py-4 text-left rounded-xl btn-enhanced group relative overflow-hidden ${
                   activeSection === id
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white'
+                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg border border-white/30'
+                    : 'text-gray-800 dark:text-white hover:bg-white/20 dark:hover:bg-gray-800/30 hover:backdrop-blur-sm border border-white/20 dark:border-gray-700/30'
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <Icon size={24} className="relative z-10" />
                 <span className="text-lg font-medium relative z-10">{label}</span>
                 {activeSection !== id && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm"></div>
                 )}
               </button>
             ))}

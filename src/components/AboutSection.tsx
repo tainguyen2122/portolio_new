@@ -46,26 +46,6 @@ const AboutSection: React.FC<AboutSectionProps> = ({
             <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl card-hover relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700"></div>
               
-              <div className="flex items-start mb-6 relative z-10">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 p-0.5 mr-4 flex-shrink-0">
-                  <img 
-                    src="https://res.cloudinary.com/doivdewue/image/upload/v1756521048/images_1_qc6a7g.jpg" 
-                    alt="Profile"
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                </div>
-                <div className="flex-1 pt-2">
-                  <h3 className="text-2xl font-bold mb-2">
-                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                      {personalData.name}
-                    </span>
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {translations.title}
-                  </p>
-                </div>
-              </div>
-              
               <div className="flex items-center mb-6 relative z-10">
                 <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 text-white mr-4 group-hover:rotate-12 transition-transform duration-300">
                   <GraduationCap size={32} />
