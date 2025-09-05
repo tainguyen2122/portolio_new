@@ -1,7 +1,4 @@
-import React from 'react';
-import { Mail, Download, Github, Phone, Globe, ChevronDown, User, Sparkles, Star, Zap, Code, Rocket } from 'lucide-react';
-import TypewriterText from './ui/TypewriterText';
-import ParticleBackground from './ui/ParticleBackground';
+
 
 interface HeroSectionProps {
   translations: any;
