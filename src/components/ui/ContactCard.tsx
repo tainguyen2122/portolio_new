@@ -16,7 +16,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ contact, index }) => {
     >
       <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${gradient}/10 rounded-full -translate-y-12 translate-x-12 group-hover:scale-150 transition-transform duration-700`}></div>
       <div className="flex items-center space-x-4 relative z-10">
-        <div className={`p-4 rounded-2xl bg-gradient-to-r ${gradient} text-white group-hover:rotate-12 transition-transform duration-300`}>
+        <div className={`p-4 rounded-2xl bg-gradient-to-r ${gradient} text-white group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 shadow-lg`}>
           <Icon size={24} />
         </div>
         <div className="flex-1">

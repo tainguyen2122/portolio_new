@@ -31,7 +31,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ translations, personalData })
           <div className="relative mb-8">
             <div className="w-40 h-40 mx-auto mb-8 rounded-full bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 p-1 animate-scaleIn">
               <div className="w-full h-full rounded-full bg-white dark:bg-gray-900 flex items-center justify-center relative overflow-hidden group">
-                <User size={64} className="text-blue-600 group-hover:scale-110 transition-transform duration-300" />
+                <img 
+                  src="https://res.cloudinary.com/doivdewue/image/upload/v1756521048/images_1_qc6a7g.jpg" 
+                  alt="Nguyễn Công Khánh Tài"
+                  className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-300"
+                />
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
               </div>
             </div>

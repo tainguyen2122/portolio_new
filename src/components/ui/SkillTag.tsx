@@ -23,7 +23,7 @@ const SkillTag: React.FC<SkillTagProps> = ({
 
   return (
     <span
-      className={`${sizes[size]} bg-gradient-to-r ${variantClass} rounded-xl font-semibold skill-tag animate-fadeInUp`}
+      className={`${sizes[size]} bg-gradient-to-r ${variantClass} rounded-xl font-semibold skill-tag animate-fadeInUp hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-default`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {skill}

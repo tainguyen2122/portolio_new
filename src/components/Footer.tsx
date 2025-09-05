@@ -18,9 +18,18 @@ const Footer: React.FC<FooterProps> = ({ translations, personalData }) => {
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center">
           <div className="text-3xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-float">
-              {translations.name}
-            </span>
+            <div className="flex items-center justify-center space-x-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 p-0.5">
+                <img 
+                  src="https://res.cloudinary.com/doivdewue/image/upload/v1756521048/images_1_qc6a7g.jpg" 
+                  alt="Profile"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-float">
+                {translations.name}
+              </span>
+            </div>
           </div>
           
           <p className="text-gray-300 mb-8 text-lg max-w-2xl mx-auto leading-relaxed">
