@@ -144,6 +144,7 @@ const Navigation: React.FC<NavigationProps> = ({
           {/* Mobile Theme and Language toggles */}
           <div className="flex flex-col space-y-4 mb-8 pb-6 border-b border-gray-200 dark:border-gray-700">
           <div className="flex flex-col space-y-4 mb-8 pb-6 border-b border-white/20 dark:border-gray-700/30">
+          <div className="flex flex-col space-y-4 mb-8 pb-6 border-b border-white/20 dark:border-gray-700/30">
             <div className="flex items-center justify-center space-x-4">
               <button
                 onClick={toggleTheme}
