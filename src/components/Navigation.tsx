@@ -1,171 +1,200 @@
 import React from 'react';
-import { Mail, Download, Github, Phone, Globe, ChevronDown, User, Sparkles, Star, Zap, Code, Rocket } from 'lucide-react';
-import TypewriterText from './ui/TypewriterText';
-import ParticleBackground from './ui/ParticleBackground';
+import { 
+  Menu, 
+  X, 
+  User, 
+  Briefcase, 
+  Folder, 
+  Mail, 
+  Sun, 
+  Moon, 
+  Languages
+} from 'lucide-react';
+import type { Theme } from '../types';
 
-interface HeroSectionProps {
+interface NavigationProps {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (open: boolean) => void;
+  activeSection: string;
+  isScrolled: boolean;
+  theme: Theme;
+  language: string;
   translations: any;
-  personalData: any;
+  scrollToSection: (sectionId: string) => void;
+  toggleTheme: () => void;
+  toggleLanguage: () => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ translations, personalData }) => {
-  const typewriterTexts = [
-    'Software Engineer',
-    'Backend Developer'
-    
+const Navigation: React.FC<NavigationProps> = ({
+  isMenuOpen,
+  setIsMenuOpen,
+  activeSection,
+  isScrolled,
+  theme,
+  language,
+  translations,
+  scrollToSection,
+  toggleTheme,
+  toggleLanguage
+}) => {
+  const navItems = [
+    { id: 'home', label: translations.nav.home, icon: User },
+    { id: 'about', label: translations.nav.about, icon: User },
+    { id: 'experience', label: translations.nav.experience, icon: Briefcase },
+    { id: 'projects', label: translations.nav.projects, icon: Folder },
+    { id: 'contact', label: translations.nav.contact, icon: Mail }
   ];
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-20 relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
-      <ParticleBackground particleCount={30} />
-
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Enhanced floating orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/30 to-purple-600/30 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/25 to-pink-600/25 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-        
-        {/* Floating icons */}
-        <div className="absolute top-20 left-10 animate-float">
-          <Code className="text-blue-500/30 w-8 h-8" />
-        </div>
-        <div className="absolute top-32 right-20 animate-float" style={{ animationDelay: '0.5s' }}>
-          <Rocket className="text-purple-500/30 w-10 h-10" />
-        </div>
-        <div className="absolute bottom-32 left-20 animate-float" style={{ animationDelay: '1.5s' }}>
-          <Zap className="text-yellow-500/30 w-6 h-6" />
-        </div>
-        <div className="absolute bottom-20 right-10 animate-float" style={{ animationDelay: '2.5s' }}>
-          <Star className="text-pink-500/30 w-7 h-7" />
-        </div>
-      </div>
-
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <div className="mb-12 animate-fadeInUp">
-          <div className="relative mb-8">
-            {/* Enhanced avatar with multiple rings */}
-            <div className="relative w-48 h-48 mx-auto mb-8 animate-scaleIn">
-              {/* Outer glow ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 animate-spin-slow opacity-75 blur-sm"></div>
-              {/* Middle ring */}
-              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 animate-pulse"></div>
-              {/* Inner container */}
-              <div className="absolute inset-3 rounded-full bg-white dark:bg-gray-900 flex items-center justify-center relative overflow-hidden group shadow-2xl">
-                <img 
-                  src="https://res.cloudinary.com/doivdewue/image/upload/v1756521048/images_1_qc6a7g.jpg" 
-                  alt="Nguyễn Công Khánh Tài"
-                  className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
-              </div>
-            </div>
-            
-            {/* Floating decorations around avatar */}
-            <div className="absolute -top-4 -right-4 animate-float">
-              <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
-                <Sparkles className="text-white" size={16} />
-              </div>
-            </div>
-            <div className="absolute -bottom-4 -left-4 animate-float" style={{ animationDelay: '1s' }}>
-              <div className="w-6 h-6 bg-gradient-to-r from-pink-400 to-red-500 rounded-full flex items-center justify-center shadow-lg">
-                <Star className="text-white" size={12} />
-              </div>
-            </div>
-            <div className="absolute top-1/2 -right-8 animate-float" style={{ animationDelay: '2s' }}>
-              <div className="w-5 h-5 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full flex items-center justify-center shadow-lg">
-                <Zap className="text-white" size={10} />
-              </div>
-            </div>
-          </div>
-
-          {/* Enhanced name with shadow effect */}
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 animate-slideInLeft relative">
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-2xl">
-              {translations.name}
-            </span>
-            {/* Text shadow effect */}
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 bg-clip-text text-transparent blur-sm -z-10">
-              {translations.name}
-            </span>
-          </h1>
-
-          {/* Enhanced typewriter section */}
-          <div className="relative mb-8 animate-slideInRight">
-            <div className="text-2xl md:text-4xl font-semibold mb-6 h-16 flex items-center justify-center relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl"></div>
-              <span className="bg-gradient-to-r from-gray-700 via-blue-600 to-purple-600 dark:from-gray-300 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent relative z-10">
-                <TypewriterText texts={typewriterTexts} speed={150} deleteSpeed={100} pauseDuration={2000} />
+    <>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'nav-enhanced shadow-xl' : 'bg-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="text-2xl font-bold">
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-float">
+                Tài Nguyễn
               </span>
             </div>
-            <div className="w-32 h-1.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 mx-auto rounded-full shadow-lg animate-pulse" />
-          </div>
-
-          {/* Enhanced subtitle */}
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed animate-fadeInUp stagger-3 font-medium">
-            {translations.subtitle}
-          </p>
-        </div>
-
-        {/* Enhanced CTAs */}
-        <div className="flex flex-col sm:flex-row justify-center gap-8 mb-16 animate-fadeInUp stagger-4">
-          {/* Get in touch */}
-          <a
-            href={`mailto:${personalData.email}`}
-          >
-            <div className="absolute inset-0 z-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="relative z-10 flex items-center gap-3">
-              <Mail size={24} className="group-hover:rotate-12 transition-transform duration-300" />
-              <span className="text-lg">{translations.buttons.getInTouch}</span>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex space-x-6 xl:space-x-8">
+              {navItems.map(({ id, label, icon: Icon }, index) => (
+                <button
+                  key={id}
+                  onClick={() => scrollToSection(id)}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-xl btn-enhanced whitespace-nowrap relative overflow-hidden group ${
+                    activeSection === id
+                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
+                      : 'text-gray-600 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600'
+                  }`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <Icon size={16} className="relative z-10" />
+                  <span className="text-sm xl:text-base relative z-10">{label}</span>
+                  {activeSection !== id && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  )}
+                </button>
+              ))}
             </div>
-          </a>
 
-          {/* Download CV */}
-          <a
-            href="https://drive.google.com/uc?export=download&id=14axVlvs48NAZqfOhWJbw095WqhmiPQZo"
-            className="group flex items-center justify-center space-x-3 px-8 py-4 border-2 border-transparent bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold shadow-xl btn-enhanced relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-            <Download size={24} className="group-hover:animate-bounce relative z-10" />
-            <span className="text-lg relative z-10">{translations.buttons.downloadCV}</span>
-          </a>
-        </div>
+            {/* Theme and Language toggles */}
+            <div className="hidden lg:flex items-center space-x-3 ml-6">
+              <button
+                onClick={toggleTheme}
+                className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-orange-500 hover:text-white btn-enhanced group"
+                title={theme !== 'light' ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
+                {theme !== 'light' ? (
+                  <Sun size={20} className="group-hover:animate-spin" />
+                ) : (
+                  <Moon size={20} className="group-hover:rotate-12" />
+                )}
+              </button>
+              
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center space-x-2 px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-green-500 hover:to-blue-500 hover:text-white btn-enhanced group"
+                title="Switch language"
+              >
+                <Languages size={20} className="group-hover:rotate-12" />
+                <span className="text-sm font-medium">{language.toUpperCase()}</span>
+              </button>
+            </div>
 
-        {/* Social icons */}
-        <div className="flex justify-center space-x-6 animate-fadeInUp stagger-5">
-          {[
-            { href: personalData.github, icon: Github, color: 'from-gray-600 to-gray-800' },
-            { href: `mailto:${personalData.email}`, icon: Mail, color: 'from-red-500 to-pink-600' },
-            { href: `tel:${personalData.phone}`, icon: Phone, color: 'from-green-500 to-emerald-600' },
-            { href: personalData.portfolio, icon: Globe, color: 'from-blue-500 to-cyan-600' }
-          ].map(({ href, icon: Icon, color }, index) => (
-            <a
-              key={index}
-              href={href}
-              target={href.startsWith('http') ? '_blank' : undefined}
-              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="group p-4 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl btn-enhanced relative overflow-hidden animate-scaleIn"
-              style={{ animationDelay: `${index * 0.1}s` }}
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white btn-enhanced relative z-50"
             >
-              <div className={`absolute inset-0 bg-gradient-to-r ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl`} />
-              <Icon
-                size={28}
-                className="text-gray-600 dark:text-gray-300 group-hover:text-white group-hover:scale-110 transition-all duration-300 relative z-10"
-              />
-            </a>
-          ))}
+              <div className="relative w-6 h-6">
+                <Menu 
+                  size={24} 
+                  className={`absolute inset-0 transition-all duration-300 ${
+                    isMenuOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'
+                  }`} 
+                />
+                <X 
+                  size={24} 
+                  className={`absolute inset-0 transition-all duration-300 ${
+                    isMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-180'
+                  }`} 
+                />
+              </div>
+            </button>
+          </div>
         </div>
+      </nav>
 
-        <div className="mt-16 animate-fadeInUp stagger-5">
-          <ChevronDown
-            size={40}
-            className="mx-auto text-gray-400 hover:text-blue-600 cursor-pointer animate-bounce hover:animate-pulse transition-colors duration-300"
-            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-          />
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden animate-fadeIn"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+
+      {/* Mobile Navigation Menu */}
+      <div className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-l border-gray-200/50 dark:border-gray-700/50 shadow-2xl z-50 transform transition-transform duration-300 ease-out lg:hidden ${
+        isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+      }`}>
+        <div className="p-6 pt-20">
+          {/* Mobile Theme and Language toggles */}
+          <div className="flex flex-col space-y-4 mb-8 pb-6 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-center space-x-4">
+              <button
+                onClick={toggleTheme}
+                className="flex items-center space-x-3 px-6 py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-lg btn-enhanced group"
+              >
+                {theme !== 'light' ? (
+                  <Sun size={20} className="group-hover:animate-spin" />
+                ) : (
+                  <Moon size={20} className="group-hover:rotate-12" />
+                )}
+                <span className="text-sm font-medium">
+                  {theme !== 'light' ? 'Light' : 'Dark'}
+                </span>
+              </button>
+              
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center space-x-3 px-6 py-3 rounded-xl bg-gradient-to-r from-green-500 to-blue-500 text-white shadow-lg btn-enhanced group"
+              >
+                <Languages size={20} className="group-hover:rotate-12" />
+                <span className="text-sm font-medium">
+                  {language === 'en' ? 'Vi' : 'En'}
+                </span>
+              </button>
+            </div>
+          </div>
+          
+          {/* Mobile Navigation Items */}
+          <div className="space-y-3">
+            {navItems.map(({ id, label, icon: Icon }, index) => (
+              <button
+                key={id}
+                onClick={() => scrollToSection(id)}
+                className={`flex items-center space-x-4 w-full px-6 py-4 text-left rounded-xl btn-enhanced group relative overflow-hidden ${
+                  activeSection === id
+                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white'
+                }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <Icon size={24} className="relative z-10" />
+                <span className="text-lg font-medium relative z-10">{label}</span>
+                {activeSection !== id && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                )}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 
-export default HeroSection;
+export default Navigation;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Download, Github, Phone, Globe, ChevronDown, User, Sparkles, Star, Zap, Code, Rocket } from 'lucide-react';
+import { Mail, Download, Github, Phone, Globe, ChevronDown, User, Sparkles } from 'lucide-react';
 import TypewriterText from './ui/TypewriterText';
 import ParticleBackground from './ui/ParticleBackground';
 
@@ -16,102 +16,63 @@ const HeroSection: React.FC<HeroSectionProps> = ({ translations, personalData })
   ];
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-20 relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
+    <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-20 relative overflow-hidden">
       <ParticleBackground particleCount={30} />
 
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Enhanced floating orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/30 to-purple-600/30 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/25 to-pink-600/25 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-        
-        {/* Floating icons */}
-        <div className="absolute top-20 left-10 animate-float">
-          <Code className="text-blue-500/30 w-8 h-8" />
-        </div>
-        <div className="absolute top-32 right-20 animate-float" style={{ animationDelay: '0.5s' }}>
-          <Rocket className="text-purple-500/30 w-10 h-10" />
-        </div>
-        <div className="absolute bottom-32 left-20 animate-float" style={{ animationDelay: '1.5s' }}>
-          <Zap className="text-yellow-500/30 w-6 h-6" />
-        </div>
-        <div className="absolute bottom-20 right-10 animate-float" style={{ animationDelay: '2.5s' }}>
-          <Star className="text-pink-500/30 w-7 h-7" />
-        </div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-400/20 to-purple-600/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/20 to-pink-600/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-cyan-400/10 to-blue-600/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
       </div>
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <div className="mb-12 animate-fadeInUp">
           <div className="relative mb-8">
-            {/* Enhanced avatar with multiple rings */}
-            <div className="relative w-48 h-48 mx-auto mb-8 animate-scaleIn">
-              {/* Outer glow ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 animate-spin-slow opacity-75 blur-sm"></div>
-              {/* Middle ring */}
-              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 animate-pulse"></div>
-              {/* Inner container */}
-              <div className="absolute inset-3 rounded-full bg-white dark:bg-gray-900 flex items-center justify-center relative overflow-hidden group shadow-2xl">
+            <div className="w-40 h-40 mx-auto mb-8 rounded-full bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 p-1 animate-scaleIn">
+              <div className="w-full h-full rounded-full bg-white dark:bg-gray-900 flex items-center justify-center relative overflow-hidden group">
                 <img 
                   src="https://res.cloudinary.com/doivdewue/image/upload/v1756521048/images_1_qc6a7g.jpg" 
                   alt="Nguyễn Công Khánh Tài"
-                  className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
               </div>
             </div>
-            
-            {/* Floating decorations around avatar */}
-            <div className="absolute -top-4 -right-4 animate-float">
-              <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
-                <Sparkles className="text-white" size={16} />
-              </div>
+            <div className="absolute -top-2 -right-2 animate-float">
+              <Sparkles className="text-yellow-500" size={24} />
             </div>
-            <div className="absolute -bottom-4 -left-4 animate-float" style={{ animationDelay: '1s' }}>
-              <div className="w-6 h-6 bg-gradient-to-r from-pink-400 to-red-500 rounded-full flex items-center justify-center shadow-lg">
-                <Star className="text-white" size={12} />
-              </div>
-            </div>
-            <div className="absolute top-1/2 -right-8 animate-float" style={{ animationDelay: '2s' }}>
-              <div className="w-5 h-5 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full flex items-center justify-center shadow-lg">
-                <Zap className="text-white" size={10} />
-              </div>
+            <div className="absolute -bottom-2 -left-2 animate-float" style={{ animationDelay: '1s' }}>
+              <Sparkles className="text-pink-500" size={20} />
             </div>
           </div>
 
-          {/* Enhanced name with shadow effect */}
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 animate-slideInLeft relative">
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-2xl">
-              {translations.name}
-            </span>
-            {/* Text shadow effect */}
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 bg-clip-text text-transparent blur-sm -z-10">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-slideInLeft">
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               {translations.name}
             </span>
           </h1>
 
-          {/* Enhanced typewriter section */}
           <div className="relative mb-8 animate-slideInRight">
-            <div className="text-2xl md:text-4xl font-semibold mb-6 h-16 flex items-center justify-center relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl"></div>
-              <span className="bg-gradient-to-r from-gray-700 via-blue-600 to-purple-600 dark:from-gray-300 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent relative z-10">
+            <div className="text-xl md:text-3xl font-semibold mb-4 h-12 flex items-center justify-center">
+              <span className="bg-gradient-to-r from-gray-700 via-blue-600 to-purple-600 dark:from-gray-300 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
                 <TypewriterText texts={typewriterTexts} speed={150} deleteSpeed={100} pauseDuration={2000} />
               </span>
             </div>
-            <div className="w-32 h-1.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 mx-auto rounded-full shadow-lg animate-pulse" />
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
           </div>
 
-          {/* Enhanced subtitle */}
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed animate-fadeInUp stagger-3 font-medium">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed animate-fadeInUp stagger-3">
             {translations.subtitle}
           </p>
         </div>
 
-        {/* Enhanced CTAs */}
-        <div className="flex flex-col sm:flex-row justify-center gap-8 mb-16 animate-fadeInUp stagger-4">
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row justify-center gap-6 mb-12 animate-fadeInUp stagger-4">
           {/* Get in touch */}
           <a
             href={`mailto:${personalData.email}`}
+            className="group relative overflow-hidden flex items-center justify-center px-8 py-4 rounded-2xl font-semibold shadow-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white btn-enhanced"
           >
             <div className="absolute inset-0 z-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="relative z-10 flex items-center gap-3">

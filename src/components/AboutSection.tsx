@@ -1,171 +1,212 @@
-import React from 'react';
-import { Mail, Download, Github, Phone, Globe, ChevronDown, User, Sparkles, Star, Zap, Code, Rocket } from 'lucide-react';
-import TypewriterText from './ui/TypewriterText';
-import ParticleBackground from './ui/ParticleBackground';
+import React, { useEffect, useRef } from 'react';
+import { User, GraduationCap, MapPin, Code, Wrench, Star, Sparkles } from 'lucide-react';
+import { observeElements } from '../utils/animations';
+import SectionHeader from './ui/SectionHeader';
+import SkillTag from './ui/SkillTag';
+import type { Translations, PersonalData } from '../types';
 
-interface HeroSectionProps {
-  translations: any;
-  personalData: any;
+interface AboutSectionProps {
+  translations: Translations;
+  personalData: PersonalData;
+  language: string;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ translations, personalData }) => {
-  const typewriterTexts = [
-    'Software Engineer',
-    'Backend Developer'
-    
-  ];
+const AboutSection: React.FC<AboutSectionProps> = ({ 
+  translations, 
+  personalData, 
+  language 
+}) => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    return observeElements(sectionRef.current);
+  }, []);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-20 relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
-      <ParticleBackground particleCount={30} />
-
-      {/* Animated background elements */}
+    <section id="about" className="py-20 px-4 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-slate-900 relative overflow-hidden" ref={sectionRef}>
+      {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Enhanced floating orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/30 to-purple-600/30 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/25 to-pink-600/25 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-        
-        {/* Floating icons */}
-        <div className="absolute top-20 left-10 animate-float">
-          <Code className="text-blue-500/30 w-8 h-8" />
-        </div>
-        <div className="absolute top-32 right-20 animate-float" style={{ animationDelay: '0.5s' }}>
-          <Rocket className="text-purple-500/30 w-10 h-10" />
-        </div>
-        <div className="absolute bottom-32 left-20 animate-float" style={{ animationDelay: '1.5s' }}>
-          <Zap className="text-yellow-500/30 w-6 h-6" />
-        </div>
-        <div className="absolute bottom-20 right-10 animate-float" style={{ animationDelay: '2.5s' }}>
-          <Star className="text-pink-500/30 w-7 h-7" />
-        </div>
+        <div className="absolute top-1/4 right-1/4 w-72 h-72 bg-gradient-to-r from-blue-400/10 to-purple-600/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-600/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
       </div>
 
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <div className="mb-12 animate-fadeInUp">
-          <div className="relative mb-8">
-            {/* Enhanced avatar with multiple rings */}
-            <div className="relative w-48 h-48 mx-auto mb-8 animate-scaleIn">
-              {/* Outer glow ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 animate-spin-slow opacity-75 blur-sm"></div>
-              {/* Middle ring */}
-              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 animate-pulse"></div>
-              {/* Inner container */}
-              <div className="absolute inset-3 rounded-full bg-white dark:bg-gray-900 flex items-center justify-center relative overflow-hidden group shadow-2xl">
-                <img 
-                  src="https://res.cloudinary.com/doivdewue/image/upload/v1756521048/images_1_qc6a7g.jpg" 
-                  alt="Nguyễn Công Khánh Tài"
-                  className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
+      <div className="max-w-6xl mx-auto relative z-10">
+        <SectionHeader
+          title={translations.about.title}
+          subtitle={translations.about.subtitle}
+          leftIcon={User}
+          rightIcon={Sparkles}
+          leftIconColor="text-blue-500"
+          rightIconColor="text-purple-500"
+        />
+
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Personal Info */}
+          <div className="space-y-8 fade-in-section stagger-1">
+            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl card-hover relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700"></div>
+              
+              <div className="flex items-start mb-6 relative z-10">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 p-0.5 mr-4 flex-shrink-0">
+                  <img 
+                    src="https://res.cloudinary.com/doivdewue/image/upload/v1756521048/images_1_qc6a7g.jpg" 
+                    alt="Profile"
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+                <div className="flex-1 pt-2">
+                  <h3 className="text-2xl font-bold mb-2">
+                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                      {personalData.name}
+                    </span>
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {translations.title}
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-center mb-6 relative z-10">
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 text-white mr-4 group-hover:rotate-12 transition-transform duration-300">
+                  <GraduationCap size={32} />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold">
+                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                      {translations.about.education}
+                    </span>
+                  </h3>
+                </div>
+              </div>
+              
+              <div className="space-y-4 relative z-10">
+                <p className="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                  {personalData.education.university}
+                </p>
+                <p className="text-lg text-gray-600 dark:text-gray-300">
+                  {personalData.education.degree[language as keyof typeof personalData.education.degree]}
+                </p>
+                <p className="text-gray-500 dark:text-gray-400 font-medium">
+                  {personalData.education.graduationDate[language as keyof typeof personalData.education.graduationDate]}
+                </p>
               </div>
             </div>
-            
-            {/* Floating decorations around avatar */}
-            <div className="absolute -top-4 -right-4 animate-float">
-              <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
-                <Sparkles className="text-white" size={16} />
+
+            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl card-hover relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-green-500/10 to-blue-600/10 rounded-full -translate-y-16 -translate-x-16 group-hover:scale-150 transition-transform duration-700"></div>
+              
+              <div className="flex items-center mb-6 relative z-10">
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-green-500 to-blue-600 text-white mr-4 group-hover:rotate-12 transition-transform duration-300">
+                  <MapPin size={32} />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold">
+                    <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                      {translations.about.location}
+                    </span>
+                  </h3>
+                </div>
               </div>
-            </div>
-            <div className="absolute -bottom-4 -left-4 animate-float" style={{ animationDelay: '1s' }}>
-              <div className="w-6 h-6 bg-gradient-to-r from-pink-400 to-red-500 rounded-full flex items-center justify-center shadow-lg">
-                <Star className="text-white" size={12} />
-              </div>
-            </div>
-            <div className="absolute top-1/2 -right-8 animate-float" style={{ animationDelay: '2s' }}>
-              <div className="w-5 h-5 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full flex items-center justify-center shadow-lg">
-                <Zap className="text-white" size={10} />
-              </div>
+              
+              <p className="text-xl font-semibold text-gray-800 dark:text-gray-200 relative z-10">
+                {personalData.location[language as keyof typeof personalData.location]}
+              </p>
             </div>
           </div>
 
-          {/* Enhanced name with shadow effect */}
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 animate-slideInLeft relative">
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-2xl">
-              {translations.name}
-            </span>
-            {/* Text shadow effect */}
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 bg-clip-text text-transparent blur-sm -z-10">
-              {translations.name}
-            </span>
-          </h1>
-
-          {/* Enhanced typewriter section */}
-          <div className="relative mb-8 animate-slideInRight">
-            <div className="text-2xl md:text-4xl font-semibold mb-6 h-16 flex items-center justify-center relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl"></div>
-              <span className="bg-gradient-to-r from-gray-700 via-blue-600 to-purple-600 dark:from-gray-300 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent relative z-10">
-                <TypewriterText texts={typewriterTexts} speed={150} deleteSpeed={100} pauseDuration={2000} />
-              </span>
+          {/* Skills */}
+          <div className="space-y-8 fade-in-section stagger-2">
+            {/* Programming Languages */}
+            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl card-hover relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-pink-600/10 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700"></div>
+              
+              <div className="flex items-center mb-6 relative z-10">
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-600 text-white mr-4 group-hover:rotate-12 transition-transform duration-300">
+                  <Code size={32} />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold">
+                    <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                      {translations.skills.languages}
+                    </span>
+                  </h3>
+                </div>
+              </div>
+              
+              <div className="flex flex-wrap gap-3 relative z-10">
+                {personalData.skills.languages.map((skill: string, index: number) => (
+                  <SkillTag
+                    key={index}
+                    skill={skill}
+                    index={index}
+                    variant="primary"
+                  />
+                ))}
+              </div>
             </div>
-            <div className="w-32 h-1.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 mx-auto rounded-full shadow-lg animate-pulse" />
+
+            {/* Frameworks */}
+            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl card-hover relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 rounded-full -translate-y-16 -translate-x-16 group-hover:scale-150 transition-transform duration-700"></div>
+              
+              <div className="flex items-center mb-6 relative z-10">
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white mr-4 group-hover:rotate-12 transition-transform duration-300">
+                  <Star size={32} />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold">
+                    <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                      {translations.skills.frameworksLabel}
+                    </span>
+                  </h3>
+                </div>
+              </div>
+              
+              <div className="flex flex-wrap gap-3 relative z-10">
+                {personalData.skills.frameworks.map((skill: string, index: number) => (
+                  <SkillTag
+                    key={index}
+                    skill={skill}
+                    index={index}
+                    variant="secondary"
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Tools */}
+            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl card-hover relative overflow-hidden group">
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-500/10 to-red-600/10 rounded-full translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700"></div>
+              
+              <div className="flex items-center mb-6 relative z-10">
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-orange-500 to-red-600 text-white mr-4 group-hover:rotate-12 transition-transform duration-300">
+                  <Wrench size={32} />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold">
+                    <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                      {translations.skills.toolsLabel}
+                    </span>
+                  </h3>
+                </div>
+              </div>
+              
+              <div className="flex flex-wrap gap-3 relative z-10">
+                {personalData.skills.tools.map((skill: string, index: number) => (
+                  <SkillTag
+                    key={index}
+                    skill={skill}
+                    index={index}
+                    variant="accent"
+                  />
+                ))}
+              </div>
+            </div>
           </div>
-
-          {/* Enhanced subtitle */}
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed animate-fadeInUp stagger-3 font-medium">
-            {translations.subtitle}
-          </p>
-        </div>
-
-        {/* Enhanced CTAs */}
-        <div className="flex flex-col sm:flex-row justify-center gap-8 mb-16 animate-fadeInUp stagger-4">
-          {/* Get in touch */}
-          <a
-            href={`mailto:${personalData.email}`}
-          >
-            <div className="absolute inset-0 z-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="relative z-10 flex items-center gap-3">
-              <Mail size={24} className="group-hover:rotate-12 transition-transform duration-300" />
-              <span className="text-lg">{translations.buttons.getInTouch}</span>
-            </div>
-          </a>
-
-          {/* Download CV */}
-          <a
-            href="https://drive.google.com/uc?export=download&id=14axVlvs48NAZqfOhWJbw095WqhmiPQZo"
-            className="group flex items-center justify-center space-x-3 px-8 py-4 border-2 border-transparent bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold shadow-xl btn-enhanced relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-            <Download size={24} className="group-hover:animate-bounce relative z-10" />
-            <span className="text-lg relative z-10">{translations.buttons.downloadCV}</span>
-          </a>
-        </div>
-
-        {/* Social icons */}
-        <div className="flex justify-center space-x-6 animate-fadeInUp stagger-5">
-          {[
-            { href: personalData.github, icon: Github, color: 'from-gray-600 to-gray-800' },
-            { href: `mailto:${personalData.email}`, icon: Mail, color: 'from-red-500 to-pink-600' },
-            { href: `tel:${personalData.phone}`, icon: Phone, color: 'from-green-500 to-emerald-600' },
-            { href: personalData.portfolio, icon: Globe, color: 'from-blue-500 to-cyan-600' }
-          ].map(({ href, icon: Icon, color }, index) => (
-            <a
-              key={index}
-              href={href}
-              target={href.startsWith('http') ? '_blank' : undefined}
-              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="group p-4 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl btn-enhanced relative overflow-hidden animate-scaleIn"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-r ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl`} />
-              <Icon
-                size={28}
-                className="text-gray-600 dark:text-gray-300 group-hover:text-white group-hover:scale-110 transition-all duration-300 relative z-10"
-              />
-            </a>
-          ))}
-        </div>
-
-        <div className="mt-16 animate-fadeInUp stagger-5">
-          <ChevronDown
-            size={40}
-            className="mx-auto text-gray-400 hover:text-blue-600 cursor-pointer animate-bounce hover:animate-pulse transition-colors duration-300"
-            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-          />
         </div>
       </div>
     </section>
   );
 };
 
-export default HeroSection;
+export default AboutSection;

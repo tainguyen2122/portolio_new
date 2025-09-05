@@ -12,7 +12,6 @@ import FloatingActionButton from './components/ui/FloatingActionButton';
 import { useTheme } from './hooks/useTheme';
 import { useLanguage } from './hooks/useLanguage';
 import { useScrollTracking } from './hooks/useScrollTracking';
-import './styles/tailwind.css';
 import { 
   getCachedTranslations, 
   getCachedPersonalData, 
